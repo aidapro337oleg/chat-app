@@ -1,0 +1,17 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "Advanced Chat Application with friend requests and call controls",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "setup-ssl": "node ssl-generator.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "selfsigned": "^4.0.0",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0"
+  }
+}

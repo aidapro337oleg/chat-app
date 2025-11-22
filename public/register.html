@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App - Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary-color: #764ba2;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #e1e5e9;
+            --error-color: #f44336;
+            --success-color: #4CAF50;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #7c93e6;
+            --primary-dark: #6a7fd4;
+            --secondary-color: #8a5fb5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border-color: #404040;
+            --error-color: #f44336;
+            --success-color: #4CAF50;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            color: var(--text-color);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            color: var(--text-light);
+            font-size: 1.1em;
+        }
+        
+        h1 {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+        
+        .error {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--error-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+            border: 1px solid rgba(244, 67, 54, 0.2);
+        }
+        
+        .success {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: none;
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-weak {
+            background: var(--error-color);
+            width: 33%;
+        }
+        
+        .strength-medium {
+            background: #ff9800;
+            width: 66%;
+        }
+        
+        .strength-strong {
+            background: var(--success-color);
+            width: 100%;
+        }
+        
+        .password-hints {
+            font-size: 0.8em;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+        
+        .session-info {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .session-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        
+        .session-info p {
+            color: var(--text-light);
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="container">
+        <div class="logo">
+            <h1>💬 ChatApp</h1>
+            <p>Присоединяйтесь к нашему сообществу</p>
+        </div>
+        
+        <h1>Создание аккаунта</h1>
+        
+        <div id="errorMessage" class="error"></div>
+        <div id="successMessage" class="success"></div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" required autocomplete="username" minlength="3" maxlength="20">
+                <div class="password-hints">От 3 до 20 символов (только буквы, цифры и _)</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email (необязательно):</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required autocomplete="new-password" minlength="6">
+                    <button type="button" class="toggle-password" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="password-strength" id="passwordStrength"></div>
+                <div class="password-hints">Минимум 6 символов</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Подтвердите пароль:</label>
+                <div class="password-container">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" minlength="6">
+                    <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Создать аккаунт</button>
+        </form>
+        
+        <div class="session-info">
+            <h3>🧪 Создание твинк-аккаунтов</h3>
+            <p>Вы можете создать несколько аккаунтов для тестирования. Откройте новые вкладки и зарегистрируйте разных пользователей, чтобы протестировать общение между ними.</p>
+        </div>
+        
+        <div class="links">
+            <a href="/">На главную</a>
+            <a href="/login">Уже есть аккаунт</a>
+        </div>
+    </div>
+
+    <script>
+        // Remove automatic redirect - allow multiple registrations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            // Setup theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Setup password toggles
+            document.getElementById('togglePassword').addEventListener('click', () => {
+                togglePasswordVisibility('password', 'togglePassword');
+            });
+            
+            document.getElementById('toggleConfirmPassword').addEventListener('click', () => {
+                togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword');
+            });
+            
+            // Setup password strength indicator
+            document.getElementById('password').addEventListener('input', updatePasswordStrength);
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (password !== confirmPassword) {
+                showMessage('errorMessage', 'Пароли не совпадают');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('errorMessage', 'Пароль должен быть не менее 6 символов');
+                return;
+            }
+            
+            if (!isValidUsername(username)) {
+                showMessage('errorMessage', 'Имя пользователя может содержать только буквы, цифры и символ _');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Регистрация...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage('successMessage', 'Аккаунт создан успешно!');
+                    
+                    // Save token and user data in sessionStorage for this tab only
+                    sessionStorage.setItem('authToken', data.token);
+                    sessionStorage.setItem('currentUser', JSON.stringify(data.user));
+                    
+                    // Save theme preference in localStorage (shared across tabs)
+                    if (data.user.settings && data.user.settings.theme) {
+                        localStorage.setItem('theme', data.user.settings.theme);
+                        document.body.setAttribute('data-theme', data.user.settings.theme);
+                        updateThemeIcon(data.user.settings.theme);
+                    }
+                    
+                    setTimeout(() => {
+                        window.location.href = '/chat';
+                    }, 2000);
+                } else {
+                    showMessage('errorMessage', data.error);
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                showMessage('errorMessage', 'Ошибка соединения с сервером');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showMessage(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#themeToggle i');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+        
+        function togglePasswordVisibility(fieldId, buttonId) {
+            const passwordInput = document.getElementById(fieldId);
+            const toggleButton = document.getElementById(buttonId);
+            const icon = toggleButton.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+        
+        function updatePasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.getElementById('passwordStrength');
+            
+            if (password.length === 0) {
+                strengthBar.className = 'password-strength';
+                strengthBar.style.width = '0';
+                return;
+            }
+            
+            let strength = 0;
+            
+            // Length check
+            if (password.length >= 6) strength += 1;
+            if (password.length >= 8) strength += 1;
+            
+            // Character variety checks
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^a-zA-Z0-9]/.test(password)) strength += 1;
+            
+            if (strength <= 2) {
+                strengthBar.className = 'password-strength strength-weak';
+            } else if (strength <= 4) {
+                strengthBar.className = 'password-strength strength-medium';
+            } else {
+                strengthBar.className = 'password-strength strength-strong';
+            }
+        }
+        
+        function isValidUsername(username) {
+            // Only allow letters, numbers, and underscores
+            return /^[a-zA-Z0-9_]+$/.test(username);
+        }
+    </script>
+</body>
+</html>

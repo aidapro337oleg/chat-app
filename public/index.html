@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App - Главная</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: #555;
+        }
+        
+        .feature i {
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .testing-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            border-left: 4px solid #667eea;
+        }
+        
+        .testing-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .testing-info p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💬 ChatApp</h1>
+        <p class="subtitle">Общайтесь с друзьями в реальном времени</p>
+        
+        <a href="/login" class="btn btn-primary">Войти</a>
+        <a href="/register" class="btn btn-secondary">Зарегистрироваться</a>
+        
+        <div class="features">
+            <div class="feature">
+                <i>✓</i> <span>Создавайте аккаунты</span>
+            </div>
+            <div class="feature">
+                <i>✓</i> <span>Добавляйте друзей</span>
+            </div>
+            <div class="feature">
+                <i>✓</i> <span>Общайтесь в чате</span>
+            </div>
+            <div class="feature">
+                <i>✓</i> <span>Совершайте звонки</span>
+            </div>
+        </div>
+        
+        <div class="testing-info">
+            <h3>🧪 Тестирование системы</h3>
+            <p>Для тестирования работы сервиса с несколькими пользователями:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Откройте это приложение в нескольких вкладках/окнах</li>
+                <li>Создайте разные аккаунты в каждой вкладке</li>
+                <li>Добавьте друг друга в друзья и тестируйте общение</li>
+                <li>Сессии сохраняются независимо в каждой вкладке</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
